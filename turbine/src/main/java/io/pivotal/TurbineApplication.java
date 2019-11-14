@@ -17,67 +17,15 @@ import java.util.*;
 
         }
 
-     /* ===================================================================================================================
-         Quicksort implementation
-    ===================================================================================================================*/
-
-     /*Note: This is not tested or verified.
-     * Write and run test cases if needed.
-     * */
-
-    public int[] sort2(int[] input){
-        return quicksort(input, 0, input.length);
-    }
-
-    private int[] quicksort(int[] input, int start, int end) {
-        int pivot = (start + end)/2;
-        partition(input, pivot,start, end);
-        return new int[0];
-    }
-
-        private int[] partition(int[] input, int pivot, int start, int end) {
-            int beforePivot = start;
-            int afterPivot = end -1;
-            while(beforePivot <= afterPivot){
-                if(input[beforePivot] > pivot){
-                    swapWithSmallerNumberFromEnd(input, pivot, beforePivot, afterPivot);
-                    putPivotInCorrectPosition(input, pivot, beforePivot, afterPivot);
-                }
-            }
-           partition(input, (pivot+start)/2,start,pivot);
-           partition(input, (pivot+end)/2,pivot,end);
-           return input;
-        }
-
-        private void putPivotInCorrectPosition(int[] input, int pivot, int beforePivot, int afterPivot) {
-            if(pivot > input[afterPivot]){
-                swapNumbers(input, pivot, afterPivot);
-            }
-
-        }
-
-
-
-        private void swapWithSmallerNumberFromEnd(int[] input, int pivot, int beforePivot, int afterPivot) {
-            for(int i = afterPivot; i > beforePivot; i--){
-                if(input[afterPivot] < input[pivot] ){
-                    swapNumbers(input, input[afterPivot], beforePivot);
-                }
-                afterPivot--;
-            }
-        }
-
-        private void swapNumbers(int[] input, int indexNewval, int indexOriginalVal) {
-                    int temp = input[indexOriginalVal];
-                    input[indexOriginalVal] = input[indexNewval];
-                    input[input.length] = temp;
-                }
 
 
  /* ===================================================================================================================
          String to numbers and operation.
     ===================================================================================================================*/
 
+ /*Problem statement in doc: convert a string of numbers and operators to a numeric value. For example,
+   if the string input was “one.two.plus.three.four”, then the result would be 46 (12+34).
+*/
     public int convertToNumbersAndOperators(String input){
         String[] inputArr = input.split("\\.");
         boolean numberSeen = false;
@@ -222,6 +170,10 @@ import java.util.*;
     ===================================================================================================================*/
 
 
+    /*Problem in doc: Sam is a professor at the university and likes to round each student's  according to these rules:
+    If the difference between the grade and the next multiple of 5 is less than 3 , round grade up to the next multiple of 5
+    */
+
     /*Considerations:
     * nulls and empty values. Negative marking considered or not for exams.
     * Can talk about the size of array and whether this will fit in memory
@@ -244,24 +196,9 @@ import java.util.*;
         return grades;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ /* ===================================================================================================================
+        Mergesort solution.
+    ===================================================================================================================*/
 
 
     public int[] sort(int[] numbers){
@@ -360,6 +297,8 @@ import java.util.*;
          Single repeat string problem solution
     ===================================================================================================================*/
 
+     /*Problem in doc: takes in a list of names with repeats, and return which name has the most repeats, where if there is multiple names with the most, take the name with the highest first letter.
+      */
 
     public String findSingleRepeatName(List<String> names){
         Set<String> uniqueNames = new HashSet<>();
@@ -407,6 +346,9 @@ import java.util.*;
          Keypad problem solution
     ===================================================================================================================*/
 
+   /*Problem statement in Doc: numbers will always be of size 9 and will be the unique numbers 1 - 9
+        they are  represented on a 3 x 3 grid*/
+   
     public int calculateTime(int[][] grid, String input){
         /*Checks that should be ideally done/asked for
 
@@ -476,5 +418,64 @@ import java.util.*;
 
         return false;
     }
-}
+
+
+
+      /* ===================================================================================================================
+         Quicksort implementation
+    ===================================================================================================================*/
+
+        /*Note: This is not tested or verified.
+         * Write and run test cases if needed.
+         * */
+
+        public int[] sort2(int[] input){
+            return quicksort(input, 0, input.length);
+        }
+
+        private int[] quicksort(int[] input, int start, int end) {
+            int pivot = (start + end)/2;
+            partition(input, pivot,start, end);
+            return new int[0];
+        }
+
+        private int[] partition(int[] input, int pivot, int start, int end) {
+            int beforePivot = start;
+            int afterPivot = end -1;
+            while(beforePivot <= afterPivot){
+                if(input[beforePivot] > pivot){
+                    swapWithSmallerNumberFromEnd(input, pivot, beforePivot, afterPivot);
+                    putPivotInCorrectPosition(input, pivot, beforePivot, afterPivot);
+                }
+            }
+            partition(input, (pivot+start)/2,start,pivot);
+            partition(input, (pivot+end)/2,pivot,end);
+            return input;
+        }
+
+        private void putPivotInCorrectPosition(int[] input, int pivot, int beforePivot, int afterPivot) {
+            if(pivot > input[afterPivot]){
+                swapNumbers(input, pivot, afterPivot);
+            }
+
+        }
+
+
+
+        private void swapWithSmallerNumberFromEnd(int[] input, int pivot, int beforePivot, int afterPivot) {
+            for(int i = afterPivot; i > beforePivot; i--){
+                if(input[afterPivot] < input[pivot] ){
+                    swapNumbers(input, input[afterPivot], beforePivot);
+                }
+                afterPivot--;
+            }
+        }
+
+        private void swapNumbers(int[] input, int indexNewval, int indexOriginalVal) {
+            int temp = input[indexOriginalVal];
+            input[indexOriginalVal] = input[indexNewval];
+            input[input.length] = temp;
+        }
+
+    }
 
