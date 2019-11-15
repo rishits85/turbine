@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 
 public class test {
 
+/*test case does not include the data for invalid */
     @Test
     public void testMain(){
         TurbineApplication turbineApplication  = new TurbineApplication();
@@ -21,7 +22,7 @@ public class test {
         testObj[2][1] = 6;
         testObj[2][2] = 7;
 
-        Assert.assertEquals(3,turbineApplication.calculateTime(testObj, "3,7,8"));
+        Assert.assertEquals(4,turbineApplication.calculateTime(testObj, "3,7,8"));
     }
 
     @Test
@@ -39,6 +40,6 @@ public class test {
         testObj[2][1] = 6;
         testObj[2][2] = 7;
 
-        Assert.assertEquals(2,turbineApplication.calculateTime(testObj, "ab"));
+        Assert.assertEquals(-1,turbineApplication.calculateTime(testObj, "ab"));
     }
 }

@@ -1,8 +1,16 @@
 package io.pivotal;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class testSortingAlgo {
+
+    private TurbineApplication turbineApplication;
+    @Before
+    public void init(){
+        this.turbineApplication = new TurbineApplication();
+    }
 
     @Test
     public void test(){
@@ -12,4 +20,16 @@ public class testSortingAlgo {
             System.out.println(i);
         };
     }
+
+    @Test
+    public void testWithEmptyList(){
+        int[] arr = new int[0];
+        Assert.assertTrue(turbineApplication.sort(arr).length == 0);
+    }
+
+    @Test
+    public void testWithNull(){
+        Assert.assertTrue(turbineApplication.sort(null).length == 0);
+    }
+
 }

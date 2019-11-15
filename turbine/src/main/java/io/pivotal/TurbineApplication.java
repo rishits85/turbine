@@ -27,6 +27,7 @@ import java.util.*;
    if the string input was “one.two.plus.three.four”, then the result would be 46 (12+34).
 */
     public int convertToNumbersAndOperators(String input){
+        /*Works under the consideration of a valid input*/
         String[] inputArr = input.split("\\.");
         boolean numberSeen = false;
         int multiplier = 1;
@@ -206,6 +207,10 @@ import java.util.*;
        /* Reasons to pick mergeSort
        *  O(nlogn) runtime in all cases.
        *  Useful when status of the numbers is unknown(that is if they appear in a sorted order or not)*/
+
+        if(numbers == null || numbers.length == 0){
+            return new int[0];
+        }
         return mergeSort(0, numbers.length-1, numbers);
     }
 
@@ -261,33 +266,6 @@ import java.util.*;
         }
     }
 
-    private int getMaxValueFromArrays(int[] firstHalf, int firstHalfInd, int[] secondHalf, int secondHalfInd) {
-        /*if end of first or second half already reached, return from other array*/
-        if(firstHalfInd == firstHalf.length -1){
-            secondHalfInd++;
-            return secondHalf[secondHalfInd-1];
-        }else if(secondHalf[secondHalfInd] == secondHalf.length - 1){
-            firstHalfInd ++;
-            return firstHalf[firstHalfInd-1];
-        }
-        /*if end not reached. return the max value from both*/
-        if(firstHalf[firstHalfInd] >= secondHalf[secondHalfInd]){
-            firstHalfInd++;
-            return firstHalf[firstHalfInd -1];
-
-        }else{
-            secondHalfInd ++;
-            return secondHalf[secondHalfInd-1];
-        }
-
-    }
-
-
-
-
-
-
-
 
 
 
@@ -314,6 +292,12 @@ import java.util.*;
                     singleRepeatName = name;
                 }else{
                     singleRepeatName = getWithHigherChar(singleRepeatName, name);
+                }
+            }else{
+                /*reset value of singleRepeatName in case it is repeated and is the last value.
+                * This is for an edge case. Check test cases for example. */
+                if(name == singleRepeatName){
+                    singleRepeatName = null;
                 }
             }
         }
@@ -348,7 +332,7 @@ import java.util.*;
 
    /*Problem statement in Doc: numbers will always be of size 9 and will be the unique numbers 1 - 9
         they are  represented on a 3 x 3 grid*/
-   
+
     public int calculateTime(int[][] grid, String input){
         /*Checks that should be ideally done/asked for
 

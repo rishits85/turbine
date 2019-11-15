@@ -1,8 +1,16 @@
 package io.pivotal;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class testRounding {
+    TurbineApplication turbineApplication;
+
+    @Before
+    public void init(){
+        this.turbineApplication = new TurbineApplication();
+    }
 
     @Test
     public void testWithVals(){
@@ -12,5 +20,15 @@ public class testRounding {
             System.out.println(i);
         }
 
+    }
+
+    @Test
+    public void testWithEmptyObject(){
+        Assert.assertTrue(turbineApplication.getRoundingAbove40(new int[0]).length==0);
+    }
+
+    @Test
+    public void testWithNull(){
+        Assert.assertTrue(turbineApplication.getRoundingAbove40(null).length==0);
     }
 }
